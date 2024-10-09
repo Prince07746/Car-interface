@@ -4,21 +4,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        FourDoorToyota toyota = new FourDoorToyota("Camry", 25000, 20, 2020, 15000, 200);
-        FourDoorBMW bmw = new FourDoorBMW("X5", 50000, 20, 2020, 15000, 200);
-        FourDoorFord ford = new FourDoorFord("Focus", 20000, 20, 2020, 15000, 200);
-        FourDoorHyundai hyundai = new FourDoorHyundai("Electra", 15000, 20, 2020, 15000, 200);
 
-
-        TwoDoorToyota toyota2 = new TwoDoorToyota("Camry 2", 25000, 20, 2020, 15000, 200);
-        TwoDoorBMW bmw2 = new TwoDoorBMW("X5 2", 50000, 20, 2020, 15000, 200);
-        TwoDoorFord ford2 = new TwoDoorFord("Focus 2", 20000, 20, 2020, 15000, 200);
-        TwoDoorHyundai hyundai2 = new TwoDoorHyundai("Electra 2", 15000, 20, 2020, 15000, 200);
-
-
-        Dealer hana = new Dealer("hana","kampala");
-        hana.dealerMenu();
-
+        Dealers dealers = new Dealers();
+        dealers.dealerMenu();
 
 
 
@@ -206,18 +194,17 @@ class FourDoorToyota extends FourDoorCar {
     }
     @Override
     public String toString() {
-        return "FourDoorToyota{" +
-                "model='" + model + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", maxSpeed=" + maxSpeed +
-                ", fuelCapacity=" + fuelCapacity +
-                ", speed=" + speed +
-                ", kmPerSpeed=" + kmPerSpeed +
-                ", year=" + year +
-                ", mileage=" + mileage +
-                ", power=" + power +
-                '}';
+        return  "\n\t FourDoorToyota" +
+                "\n\t model=" + model+
+                "\n\t name='" + name+
+                "\n\t price=" + price +
+                "\n\t maxSpeed=" + maxSpeed +
+                "\n\t fuelCapacity=" + fuelCapacity +
+                "\n\t speed=" + speed +
+                "\n\t kmPerSpeed=" + kmPerSpeed +
+                "\n\t year=" + year +
+                "\n\t mileage=" + mileage +
+                "\n\t power=" + power;
     }
 }
 
@@ -449,18 +436,17 @@ class TwoDoorFord extends TwoDoorCar {
 
     @Override
     public String toString() {
-        return "TwoDoorFord{" +
-                "model='" + model + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", maxSpeed=" + maxSpeed +
-                ", fuelCapacity=" + fuelCapacity +
-                ", speed=" + speed +
-                ", kmPerSpeed=" + kmPerSpeed +
-                ", year=" + year +
-                ", mileage=" + mileage +
-                ", power=" + power +
-                '}';
+        return "\n\t TwoDoorFord " +
+                "\n\t model=" + model+
+                "\n\t name='" + name+
+                "\n\t price=" + price +
+                "\n\t maxSpeed=" + maxSpeed +
+                "\n\t fuelCapacity=" + fuelCapacity +
+                "\n\t speed=" + speed +
+                "\n\t kmPerSpeed=" + kmPerSpeed +
+                "\n\t year=" + year +
+                "\n\t mileage=" + mileage +
+                "\n\t power=" + power;
     }
 }
 
@@ -489,18 +475,17 @@ class TwoDoorHyundai extends TwoDoorCar {
 
     @Override
     public String toString() {
-        return "TwoDoorHyundai{" +
-                "model='" + model + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", maxSpeed=" + maxSpeed +
-                ", fuelCapacity=" + fuelCapacity +
-                ", speed=" + speed +
-                ", kmPerSpeed=" + kmPerSpeed +
-                ", year=" + year +
-                ", mileage=" + mileage +
-                ", power=" + power +
-                '}';
+        return "\n\t TwoDoorHyundai" +
+                "\n\t model=" + model+
+                "\n\t name='" + name+
+                "\n\t price=" + price +
+                "\n\t maxSpeed=" + maxSpeed +
+                "\n\t fuelCapacity=" + fuelCapacity +
+                "\n\t speed=" + speed +
+                "\n\t kmPerSpeed=" + kmPerSpeed +
+                "\n\t year=" + year +
+                "\n\t mileage=" + mileage +
+                "\n\t power=" + power;
     }
 }
 
@@ -521,6 +506,10 @@ class Dealer{
         this.cars = new ArrayList<>();
         this.accountBalance = 0;
         this.profit = 0;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void addCar(Car car) {
@@ -577,7 +566,6 @@ class Dealer{
                 break;
             case "3":
                 System.out.println("\t Exiting Dealer Menu");
-                System.exit(0);
                 break;
                 case "4":
                     System.out.print("\t Enter the name of the car you want to add: ");
@@ -603,7 +591,7 @@ class Dealer{
                         double mileage = scanner.nextDouble();
                         System.out.print("\t Enter the power of the car: ");
                         double power = scanner.nextDouble();
-                        Car car = new TwoDoorHyundai(carName2, price, fuelCapacity, year, mileage, power);
+                        Car car = new FourDoorToyota(carName2, price, fuelCapacity, year, mileage, power);
                         addCar(car);
                         System.out.println("\t Car added successfully");
                         dealerMenu();
@@ -616,9 +604,102 @@ class Dealer{
         }
     }
 
+    @Override
+    public String toString() {
+        return
+                "\n\t cars= " + cars.size() +
+                "\n\t ==================================="+
+                "\n\t name=" + name +
+                "\n\t location=" + location +
+                "\n\t accountBalance=" + accountBalance +
+                "\n\t profit=" + profit;
+    }
+}
+
+
+
+class Dealers{
+ArrayList<Dealer> dealers;
+
+    public Dealers() {
+        this.dealers = new ArrayList<>();
+    }
+
+
+    public void addDealer(Dealer dealer) {
+        dealers.add(dealer);
+    }
+    public void displayDealers() {
+        for (Dealer dealer : dealers) {
+            System.out.println(dealer.toString());
+        }
+    }
+
+    public void dealerMenu() {
+        System.out.println("\t ===========================================");
+        System.out.println("\t Welcome to the Dealer Menu");
+        System.out.println("\t 1. Display all dealers");
+        System.out.println("\t 2. add dealer");
+        System.out.println("\t 3. access dealer");
+        System.out.println("\t 4. Exit");
+        System.out.print("\t Enter your choice: ");
+        Scanner scanner = new Scanner(System.in);
+        String choice = scanner.nextLine();
+        switch (choice) {
+            case "1":
+                displayDealers();
+                if (dealers.isEmpty()) {
+                    System.out.println("\t No dealers");
+                }
+                dealerMenu();
+                break;
+            case "2":
+                System.out.print("\t name: ");
+                String name = scanner.nextLine();
+                System.out.print("\t address: ");
+                String address = scanner.nextLine();
+                addDealer(new Dealer(name, address));
+                System.out.println("\t Dealer added successfully");
+                dealerMenu();
+                break;
+            case "3":
+                System.out.print("\t name: ");
+                String dealerName = scanner.nextLine();
+                useDealer(dealerName);
+                break;
+            case "4":
+                System.exit(0);
+                break;
+            default:
+                System.out.println("\t Invalid choice");
+                dealerMenu();
+                break;
+        }
+    }
+
+    public void useDealer(String name){
+         for(Dealer dealer : dealers) {
+             if (dealer.getName().equals(name)) {
+                 dealer.dealerMenu();
+                 dealerMenu();
+                 break;
+             }
+         }
+    }
 
 }
 
+
+//        FourDoorToyota toyota = new FourDoorToyota("Camry", 25000, 20, 2020, 15000, 200);
+//        FourDoorBMW bmw = new FourDoorBMW("X5", 50000, 20, 2020, 15000, 200);
+//        FourDoorFord ford = new FourDoorFord("Focus", 20000, 20, 2020, 15000, 200);
+//        FourDoorHyundai hyundai = new FourDoorHyundai("Electra", 15000, 20, 2020, 15000, 200);
+//
+//
+//        TwoDoorToyota toyota2 = new TwoDoorToyota("Camry 2", 25000, 20, 2020, 15000, 200);
+//        TwoDoorBMW bmw2 = new TwoDoorBMW("X5 2", 50000, 20, 2020, 15000, 200);
+//        TwoDoorFord ford2 = new TwoDoorFord("Focus 2", 20000, 20, 2020, 15000, 200);
+//        TwoDoorHyundai hyundai2 = new TwoDoorHyundai("Electra 2", 15000, 20, 2020, 15000, 200);
 
 
 
